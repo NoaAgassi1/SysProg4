@@ -1,93 +1,64 @@
 
-
 ---
 
-```markdown
 # MyContainer Project
 
 ## Overview
 
-This project implements a generic container (MyContainer) for comparable elements,
-supporting dynamic add/remove operations and multiple custom iterators.
-The iterators allow traversal in various orders: insertion, ascending, descending, side-cross, reverse, and middle-out.
-The code is modular and follows modern C++ practices.
----
+This project implements a generic dynamic container class called `MyContainer`, designed for storing comparable elements (e.g., integers, strings, etc.).
+The container supports insertion, removal, and multiple ways of iterating over the data using custom iterators.
 
 ## Features
 
-### Generic Container – `MyContainer<T>`
-- Dynamic container for comparable types.
-- Supports:
-  - `add(T value)` – Add an element.
-  - `remove(T value)` – Remove all instances of a given element (throws if not found).
-  - `size()` – Returns the number of elements.
-  - `operator<<` – Pretty prints the container.
+* Add and remove elements dynamically.
+* Automatically removes all occurrences of an element.
+* Returns the container size.
+* Custom `<<` operator for printing.
+* Fully templated and supports any comparable type.
+* Implements six iterator types:
 
-### Iterators Implemented
-Each iterator provides a unique traversal order:
-- **Order** – Insertion order.
-- **AscendingOrder** – Sorted ascending.
-- **DescendingOrder** – Sorted descending.
-- **SideCrossOrder** – Alternates: smallest, largest, second smallest, second largest, etc.
-- **ReverseOrder** – From last inserted to first.
-- **MiddleOutOrder** – Starts at the middle, alternates left and right.
-
-All iterators support `begin()` and `end()` methods, and comply with STL-style iteration.
-
----
+  * `Order`: traverses in insertion order.
+  * `AscendingOrder`: from smallest to largest.
+  * `DescendingOrder`: from largest to smallest.
+  * `SideCrossOrder`: alternates between smallest and largest.
+  * `ReverseOrder`: reverse of insertion order.
+  * `MiddleOutOrder`: starts from middle, then left and right alternately.
 
 ## Project Structure
 
 ```
+.
+├── MyContainer.hpp          # Container class and iterators
+├── main.cpp                 # Demo run
+├── TestMyContainer.cpp      # Unit tests with doctest
+├── Makefile                 # Compilation and testing
+└── README.md                # This file
+```
 
-Sys\_4/
-├── MyContainer.hpp         # Class and all iterators
-├── main.cpp                # Demo program
-├── MyContainerTests.cpp    # Unit tests using doctest
-├── Makefile                # Build & test automation
-└── README.md               # Project description
+## How to Run:
 
-````
+Make sure you have a C++20 compatible compiler. Then use the following commands:
+
+* `make Main` – Compile and run the demo (`main.cpp`)
+* `make test` – Compile and run unit tests (`TestMyContainer.cpp`)
+* `make valgrind` – Run memory checks using Valgrind
+* `make clean` – Remove compiled binaries and temporary files
+
+
+
+## Testing
+
+Unit tests are written using the [doctest](https://github.com/doctest/doctest) framework and cover:
+
+* Basic container functionality (add, remove, size)
+* Iterator traversal logic for all six iterator types
+* Edge cases (empty containers, duplicates, etc.)
+
+
+## Authors
+
+* Noa Agassi
+* Email: \[[agassinoa20@gmail.com](mailto:your@email.com)]
 
 ---
 
-## Build and Run
-
-###  Compile and run the demo:
-```bash
-make Main
-./Main
-````
-
-### Run all tests:
-
-```bash
-make test
-```
-
-### Check for memory leaks:
-
-```bash
-make valgrind
-```
-
-### Clean all build files:
-
-```bash
-make clean
-```
-
----
-
-## Notes
-
-* All components are in the `Container` namespace.
-* Input validation is enforced (e.g., `remove()` throws on missing value).
-* The project includes both numeric and string usage examples.
-* Fully tested using `doctest`, covering edge cases and iterator behavior.
-* Checked for memory leaks using `valgrind`.
-
-
-
-רוצה שאוסיף את הקובץ הזה ל־ZIP או שתשלחי לי את המייל שלך להכניס ב־README?
-```
